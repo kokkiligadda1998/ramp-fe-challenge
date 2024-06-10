@@ -21,8 +21,8 @@ export function usePaginatedTransactions(): PaginatedTransactionsResult {
       if (response === null || previousResponse === null) {
         return response
       }
-
-      return { data: response.data, nextPage: response.nextPage }
+      let res = previousResponse.data.concat(response.data)
+      return { data: res, nextPage: response.nextPage }
     })
   }, [fetchWithCache, paginatedTransactions])
 
